@@ -1,0 +1,350 @@
+// Variáveis
+$primary-color: #2563eb;
+$primary-hover: #1d4ed8;
+$secondary-color: #6b7280;
+$danger-color: #dc2626;
+$danger-hover: #b91c1c;
+$success-color: #059669;
+$border-radius: 0.5rem;
+$shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+
+// Mixins
+@mixin transition($property: all, $duration: 200ms, $timing: ease) {
+  transition: $property $duration $timing;
+}
+
+@mixin button-base {
+  padding: 0.5rem 1.5rem;
+  border-radius: $border-radius;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  @include transition();
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+  }
+}
+
+// Reset básico
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+  color: #1f2937;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0e7ff 100%);
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+// Header styles
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+  
+  h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+    
+    i {
+      color: $primary-color;
+    }
+  }
+  
+  .info-card {
+    background: white;
+    border-radius: $border-radius;
+    box-shadow: $shadow;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    
+    p {
+      color: $secondary-color;
+      font-size: 0.875rem;
+      
+      a {
+        color: $primary-color;
+        text-decoration: none;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+// Card styles
+.card {
+  background: white;
+  border-radius: $border-radius;
+  box-shadow: $shadow;
+  margin-bottom: 1.5rem;
+  
+  &.input-card {
+    padding: 1.5rem;
+    
+    .input-group {
+      display: flex;
+      gap: 0.5rem;
+      
+      input {
+        flex: 1;
+        padding: 0.75rem 1rem;
+        border: 1px solid #d1d5db;
+        border-radius: $border-radius;
+        font-size: 1rem;
+        @include transition();
+        
+        &:focus {
+          outline: none;
+          border-color: $primary-color;
+          box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+        }
+        
+        &::placeholder {
+          color: #9ca3af;
+        }
+      }
+      
+      .btn-primary {
+        @include button-base;
+        background: $primary-color;
+        color: white;
+        
+        &:hover {
+          background: $primary-hover;
+        }
+      }
+    }
+  }
+  
+  &.filter-card {
+    padding: 1rem;
+    
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      
+      .filter-btn {
+        @include button-base;
+        background: #f3f4f6;
+        color: #374151;
+        font-size: 0.875rem;
+        
+        &:hover {
+          background: #e5e7eb;
+        }
+        
+        &.active {
+          background: $primary-color;
+          color: white;
+          
+          &:hover {
+            background: $primary-hover;
+          }
+        }
+      }
+    }
+  }
+  
+  &.tasks-card {
+    .card-header {
+      padding: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      
+      h2 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1f2937;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+    }
+    
+    .task-list {
+      .task-item {
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        @include transition();
+        border-bottom: 1px solid #f3f4f6;
+        
+        &:hover {
+          background: #f9fafb;
+        }
+        
+        &:last-child {
+          border-bottom: none;
+        }
+        
+        .task-checkbox {
+          width: 1.25rem;
+          height: 1.25rem;
+          accent-color: $primary-color;
+          cursor: pointer;
+        }
+        
+        .task-content {
+          flex: 1;
+          
+          .task-text {
+            color: #1f2937;
+            font-size: 0.875rem;
+            margin-bottom: 0.25rem;
+            
+            &.completed {
+              text-decoration: line-through;
+              color: $secondary-color;
+            }
+            
+            @media (min-width: 768px) {
+              font-size: 1rem;
+            }
+          }
+          
+          .task-date {
+            font-size: 0.75rem;
+            color: #9ca3af;
+          }
+        }
+        
+        .task-actions {
+          display: flex;
+          gap: 0.5rem;
+          
+          .btn-action {
+            padding: 0.5rem;
+            border: none;
+            border-radius: $border-radius;
+            cursor: pointer;
+            @include transition();
+            
+            &.btn-edit {
+              color: $primary-color;
+              background: transparent;
+              
+              &:hover {
+                background: rgba($primary-color, 0.1);
+              }
+            }
+            
+            &.btn-delete {
+              color: $danger-color;
+              background: transparent;
+              
+              &:hover {
+                background: rgba($danger-color, 0.1);
+              }
+            }
+          }
+        }
+      }
+    }
+    
+    .empty-state {
+      padding: 2rem;
+      text-align: center;
+      color: $secondary-color;
+      
+      i {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        display: block;
+      }
+      
+      &.hidden {
+        display: none;
+      }
+    }
+  }
+}
+
+// Clear button
+.clear-section {
+  text-align: center;
+  margin-top: 1.5rem;
+  
+  .btn-danger {
+    @include button-base;
+    background: $danger-color;
+    color: white;
+    margin: 0 auto;
+    
+    &:hover {
+      background: $danger-hover;
+    }
+  }
+}
+
+// Responsive design
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  header h1 {
+    font-size: 2rem;
+  }
+  
+  .card.input-card .input-group {
+    flex-direction: column;
+    
+    .btn-primary {
+      justify-content: center;
+    }
+  }
+  
+  .card.filter-card .filter-buttons {
+    flex-direction: column;
+    align-items: center;
+    
+    .filter-btn {
+      width: 100%;
+      max-width: 200px;
+      justify-content: center;
+    }
+  }
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.task-item {
+  animation: fadeIn 0.3s ease-out;
+}
+
+// Focus styles for accessibility
+:focus-visible {
+  outline: 2px solid $primary-color;
+  outline-offset: 2px;
+}

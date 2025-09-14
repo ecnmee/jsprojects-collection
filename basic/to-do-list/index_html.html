@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List - Eduardo Costa</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <!-- Container principal -->
+    <div class="container mx-auto px-4 py-8 max-w-2xl">
+        <!-- Cabeçalho da aplicação -->
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">
+                <i class="fas fa-tasks text-blue-600"></i>
+                To-Do List
+            </h1>
+            <!-- Informações do desenvolvedor -->
+            <div class="bg-white rounded-lg shadow-md p-4 mb-6">
+                <p class="text-gray-600 text-sm">
+                    <strong>Desenvolvedor:</strong> Eduardo Costa Nkuansambu<br>
+                    <strong>Versão:</strong> 1.0.0<br>
+                    <strong>GitHub:</strong> <a href="https://github.com/ecnmee" class="text-blue-600 hover:underline">ecnmee</a><br>
+                    <strong>Data:</strong> <span id="currentDate"></span>
+                </p>
+            </div>
+        </header>
+
+        <!-- Formulário para adicionar nova tarefa -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div class="flex gap-2">
+                <input 
+                    type="text" 
+                    id="taskInput" 
+                    placeholder="Digite sua nova tarefa..."
+                    class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                >
+                <button 
+                    id="addTaskBtn"
+                    class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200 flex items-center gap-2"
+                >
+                    <i class="fas fa-plus"></i>
+                    Adicionar
+                </button>
+            </div>
+        </div>
+
+        <!-- Filtros das tarefas -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-6">
+            <div class="flex justify-center gap-2">
+                <button id="filterAll" class="filter-btn active px-4 py-2 rounded-lg bg-blue-600 text-white">
+                    Todas (<span id="countAll">0</span>)
+                </button>
+                <button id="filterPending" class="filter-btn px-4 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300">
+                    Pendentes (<span id="countPending">0</span>)
+                </button>
+                <button id="filterCompleted" class="filter-btn px-4 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300">
+                    Concluídas (<span id="countCompleted">0</span>)
+                </button>
+            </div>
+        </div>
+
+        <!-- Lista de tarefas -->
+        <div class="bg-white rounded-lg shadow-md">
+            <div class="p-4 border-b border-gray-200">
+                <h2 class="text-lg font-semibold text-gray-800 flex items-center gap-2">
+                    <i class="fas fa-list"></i>
+                    Suas Tarefas
+                </h2>
+            </div>
+            <div id="taskList" class="divide-y divide-gray-200">
+                <!-- As tarefas serão inseridas aqui dinamicamente -->
+            </div>
+            <!-- Mensagem quando não há tarefas -->
+            <div id="emptyState" class="p-8 text-center text-gray-500 hidden">
+                <i class="fas fa-clipboard-list text-4xl mb-4"></i>
+                <p>Nenhuma tarefa encontrada</p>
+            </div>
+        </div>
+
+        <!-- Botão para limpar todas as tarefas -->
+        <div class="text-center mt-6">
+            <button 
+                id="clearAllBtn"
+                class="bg-red-600 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition-colors duration-200 flex items-center gap-2 mx-auto"
+            >
+                <i class="fas fa-trash-alt"></i>
+                Limpar Todas as Tarefas
+            </button>
+        </div>
+    </div>
+
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
